@@ -1,0 +1,57 @@
+{
+  "builders": [
+    {
+      "CPUs": "{{user `vm-cpu-num`}}",
+      "RAM": "{{user `vm-mem-size`}}",
+      "RAM_reserve_all": false,
+      "boot_command": [
+        "<esc><wait>",
+        "linux ks=https://raw.githubusercontent.com/guillermo-musumeci/packer-vsphere-iso-linux/master/CentOS7-CloudInit/ks.cfg<enter>"
+      ],
+      "boot_order": "disk,cdrom,floppy",
+      "boot_wait": "10s",
+      "cluster": "{{user `vsphere-cluster`}}",
+      "convert_to_template": true,
+      "datacenter": "{{user `vsphere-datacenter`}}",
+      "datastore": "{{user `vsphere-datastore`}}",
+      "disk_controller_type": "pvscsi",
+      "floppy_files": [
+        "ks.cfg"
+      ],
+      "guest_os_type": "centos7_64Guest",
+      "insecure_connection": "true",
+      "iso_paths": [
+        "{{user `iso_url`}}"
+      ],
+      "network_adapters": [
+        {
+          "network": "{{user `vsphere-network`}}",
+          "network_card": "vmxnet3"
+        }
+      ],
+      "notes": "Build via Packer",
+      "password": "{{user `vsphere-password`}}",
+      "ssh_password": "server",
+      "ssh_username": "root",
+      "storage": [
+        {
+          "disk_size": "{{user `vm-disk-size`}}",
+          "disk_thin_provisioned": true
+        }
+      ],
+      "type": "vsphere-iso",
+      "username": "{{user `vsphere-user`}}",
+      "vcenter_server": "{{user `vsphere-server`}}",
+      "vm_name": "{{user `vm-name`}}"
+    }
+  ],
+  "provisioners": [
+    {
+      "inline": [
+        "sudo yum install -y cloud-init"
+      ],
+      "type": "shell"
+    }
+  ]
+}
+
