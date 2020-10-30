@@ -6,7 +6,7 @@
       "RAM_reserve_all": false,
       "boot_command": [
         "<esc><wait>",
-        "linux ks=https://raw.githubusercontent.com/hutger/packer/master/CentOS7-CloudInit/ks.cfg<enter>"
+        "linux ks=https://raw.githubusercontent.com/hutger/packer/master/CentOS8-CloudInit/ks.cfg<enter>"
       ],
       "ip_wait_timeout": "10m",
       "boot_order": "disk,cdrom,floppy",
@@ -19,7 +19,7 @@
       "floppy_files": [
         "ks.cfg"
       ],
-      "guest_os_type": "centos7_64Guest",
+      "guest_os_type": "centos8_64Guest",
       "insecure_connection": "true",
       "iso_paths": [
         "{{user `iso_url`}}"
