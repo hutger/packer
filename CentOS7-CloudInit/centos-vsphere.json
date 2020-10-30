@@ -6,8 +6,9 @@
       "RAM_reserve_all": false,
       "boot_command": [
         "<esc><wait>",
-        "linux ks=https://raw.githubusercontent.com/guillermo-musumeci/packer-vsphere-iso-linux/master/CentOS7-CloudInit/ks.cfg<enter>"
+        "linux ks=hd:fd0:/ks.cfg<enter>"
       ],
+      "ip_wait_timeout": "10m",
       "boot_order": "disk,cdrom,floppy",
       "boot_wait": "10s",
       "cluster": "{{user `vsphere-cluster`}}",
@@ -31,7 +32,7 @@
       ],
       "notes": "Build via Packer",
       "password": "{{user `vsphere-password`}}",
-      "ssh_password": "server",
+      "ssh_password": "{{user `ssh-password`}}",
       "ssh_username": "root",
       "storage": [
         {
