@@ -11,18 +11,9 @@
         name: epel-release
         state: latest
 
- #   - name: install the latest version of wget
- #     dnf:
- #       name: wget
- #       state: latest
-
     - name: Add opsview repository
       dnf: 
         name: https://opsview-agents.s3.amazonaws.com/centos8/opsview-agent-6.3.1.201911130833-1.ct8.1.1911.x86_64.rpm
-
-    - name: Remote RPM install with yum
-      dnf: 
-        name: https://s3.amazonaws.com/amazoncloudwatch-agent/centos/amd64/latest/amazon-cloudwatch-agent.rpm
 
     - name: Install Proserve required support packages
       dnf:
@@ -37,6 +28,7 @@
         - curl 
         - wget 
         - lvm2
+        - open-vm-tools
 
     - name: Remove firewalld from base image
       dnf:
