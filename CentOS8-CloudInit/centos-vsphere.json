@@ -37,6 +37,10 @@
         {
           "disk_size": "{{user `vm-disk-size-1`}}",
           "disk_thin_provisioned": true
+        },
+        {
+          "disk_size": "{{user `vm-disk-size-2`}}",
+          "disk_thin_provisioned": true
         }
       ],
       "type": "vsphere-iso",
