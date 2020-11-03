@@ -6,9 +6,8 @@
       "RAM_reserve_all": false,
       "boot_command": [
         "<esc><wait>",
-        "linux ks=https://raw.githubusercontent.com/hutger/packer/master/CentOS8-CloudInit/ks.cfg<enter>"
+        "linux ks=https://raw.githubusercontent.com/hutger/packer/master/CentOS8-CloudInit/ks-custom.cfg<enter>"
       ],
-      "ip_wait_timeout": "10m",
       "boot_order": "disk,cdrom,floppy",
       "boot_wait": "10s",
       "cluster": "{{user `vsphere-cluster`}}",
@@ -17,7 +16,7 @@
       "datastore": "{{user `vsphere-datastore`}}",
       "disk_controller_type": "pvscsi",
       "floppy_files": [
-        "ks.cfg"
+        "ks-custom.cfg"
       ],
       "guest_os_type": "centos8_64Guest",
       "insecure_connection": "true",
@@ -36,7 +35,11 @@
       "ssh_username": "root",
       "storage": [
         {
-          "disk_size": "{{user `vm-disk-size`}}",
+          "disk_size": "{{user `vm-disk-size-1`}}",
+          "disk_thin_provisioned": true
+        },
+        {
+          "disk_size": "{{user `vm-disk-size-2`}}",
           "disk_thin_provisioned": true
         }
       ],
