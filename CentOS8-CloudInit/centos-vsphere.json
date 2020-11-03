@@ -6,7 +6,7 @@
       "RAM_reserve_all": false,
       "boot_command": [
         "<esc><wait>",
-        "linux ks=https://raw.githubusercontent.com/hutger/packer/master/CentOS8-CloudInit/ks-custom.cfg<enter>"
+        "linux ks=https://raw.githubusercontent.com/hutger/packer/master/CentOS8-CloudInit/ks.cfg<enter>"
       ],
       "boot_order": "disk,cdrom,floppy",
       "boot_wait": "10s",
@@ -16,7 +16,7 @@
       "datastore": "{{user `vsphere-datastore`}}",
       "disk_controller_type": "pvscsi",
       "floppy_files": [
-        "ks-custom.cfg"
+        "ks.cfg"
       ],
       "guest_os_type": "centos8_64Guest",
       "insecure_connection": "true",
@@ -64,7 +64,7 @@
           "-e",
           "ansible_python_interpreter=/usr/bin/python3"
         ],
-        "playbook_file": "./ami-centos8-ansible.yml",
+        "playbook_file": "./centos8-ansible.yml",
         "user": "root"
       }
   ]
