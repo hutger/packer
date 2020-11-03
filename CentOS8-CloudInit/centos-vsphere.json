@@ -50,12 +50,23 @@
     }
   ],
   "provisioners": [
-    {
-      "inline": [
-        "sudo yum install -y cloud-init"
-      ],
-      "type": "shell"
-    }
+      {
+          "type": "shell",
+          "inline": ["sudo sed -i 's/requiretty/!requiretty/' /etc/sudoers"]
+        },
+      {
+          "type" : "shell",
+          "script" : "./bootstrap.sh"
+      },
+      {
+        "type": "ansible",
+        "extra_arguments": [
+          "-e",
+          "ansible_python_interpreter=/usr/bin/python3"
+        ],
+        "playbook_file": "./ami-centos8-ansible.yml",
+        "user": "root"
+      }
   ]
 }
 
